@@ -84,9 +84,26 @@ The application will be available at http://localhost:3000 (or the port specifie
 
 The application provides the following API endpoints:
 
-- `/users` - User management
-- `/calendar-events` - Calendar event management
-- `/country` - Country information
+### User Endpoints
+
+- `GET /users` - Retrieve a list of all users
+- `GET /users/:id` - Retrieve a specific user by ID
+- `POST /users` - Create a new user
+  - Request body: `{ "fullName": "string", "email": "string" }`
+- `PATCH /users/:id` - Update an existing user
+  - Request body: `{ "fullName"?: "string", "email"?: "string" }` (all fields optional)
+- `DELETE /users/:id` - Delete a user
+
+### Country Endpoints
+
+- `GET /countries/availableCountries` - Retrieve a list of available countries
+- `GET /countries/countryInfo/:code` - Retrieve information about a specific country by its code
+
+### Calendar Event Endpoints
+
+- `POST /users/:userId/calendar/holidays` - Add holidays to a user's calendar
+  - Request body: `{ "countryCode": "string", "year": number, "holidays"?: string[] }`
+  - The `holidays` field is optional. If not provided, all holidays for the specified country and year will be added.
 
 ## Testing
 
